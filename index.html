@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9bc1020bc5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body>
+    <h1 class="h1">โปรแกรมบัญชี รายรับ รายจ่าย</h1>
+    <div class="total">
+        <h2 class="h2">ยอดคงเหลือ (บาท)</h2>
+        <h1 class="h1-2">฿0.00</h1>
+    </div>
+    <div class="earnpaybg">
+        <div class="earnpaytext">   
+            <div class="earn">
+                <h2 class="h2">รายรับ</h2>
+                <h2 class="earntext" id="earntext">฿0.00</h2>
+            </div>
+            <p class="line-1"></p>
+            <div class="pay">
+                <h2 class="h2">รายจ่าย</h2>
+                <h2 class="paytext" id="paytext">฿0.00</h2>
+            </div>
+        </div> 
+    </div>
+    <h2 class="h2-2">ประวัติธุรกรรม</h2>
+    <p class="line-2"></p>
+    <ul class="history" id="history">
+        
+    </ul>
+    <h2 class="h2-2">เพิ่มธุรกรรม</h2>
+    <p class="line-2"></p>
+    <ul class="add">
+        <li class="addBank">
+            <h3 class="h3"> ชื่อธุรกรรม </h3>
+            <input type="text" class="bankType" placeholder="ระบุชื่อธุรกรรม" id="bankname">
+            <h3 class="h3"> จำนวนเงิน (+รายรับ , -รายจ่าย) </h3>
+            <input type="text" class="moneyType" placeholder="ระบุชื่อจำนวนเงิน" id="moneyvalue">
+            <button class="addBank-2" onclick="addToHistory()"><h3 class="h3-2">เพิ่มธุรกรรม</h3-2></button>
+        </li>
+    </ul>
+
+
+
+
+
+<script src="/app.js"></script>
+</body>
+</html>
