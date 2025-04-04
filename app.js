@@ -16,7 +16,8 @@ function addToHistory(){
         addItems.innerHTML=`
         <li class="animate__animated animate__bounceIn" id="historyList">
             <h3 class="historyListText">${bankName}</h3>
-            <h3 class="historyListText">฿${moneyValue}</h3>
+            <h3 class="historyListNumber" >฿${moneyValue}</h3>
+            <i class="fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
             <p class="line-3"></p>
         </li>
     `;  
@@ -27,7 +28,7 @@ function addToHistory(){
     `;  
         totalMoneyValuefinal += parseFloat(moneyValue) 
         totalMoneyValue.innerHTML=`
-        ฿${totalMoneyValuefinal};
+        ฿${totalMoneyValuefinal}
     `;  
         
         historyAll.appendChild(addItems);
@@ -41,7 +42,8 @@ function addToHistory(){
         addItems.innerHTML=`
         <li class="animate__animated animate__bounceIn" id="historyList" >
             <h3 class="historyListText">${bankName}</h3>
-            <h3 class="historyListText">฿${moneyValue}</h3>
+            <h3 class="historyListNumber" >฿${moneyValue}</h3>
+            <i class="fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
             <p class="line-4"></p>
         </li>
     `;
@@ -60,19 +62,44 @@ function addToHistory(){
         ฿${totalMoneyValuefinal}
     `;  
     }
-    else if(bankName == ""){
+    else if(!bankName || !moneyValue){
         Swal.fire({
-            title: "กรุณาระบุชื่อ",
-            icon: "error",
-            draggable: true
-          });
-    }
-    else if(moneyValue == ""){
-        Swal.fire({
-            title: "กรุณาระบุจำนวนเงิน",
+            title: "กรุณาระบุข้อมูลให้ครบ",
             icon: "error",
             draggable: true
           });
     }
     
+    
+    
+}
+function del(list){
+    
+    let earnText = document.getElementById('earntext');
+    let payText = document.getElementById('paytext');
+    let totalMoneyValue = document.getElementById('totalmoney');
+    let moneyValue = parseFloat(list.querySelector(".historyListNumber").textContent.replace("฿", ""));
+
+
+    if(moneyValue>0){
+        moneyValuefinal1 -= moneyValue;
+        earnText.innerHTML = `
+        ฿${moneyValuefinal1}
+    `;  
+    totalMoneyValuefinal -= moneyValue;
+    totalMoneyValue.innerHTML = `
+        ฿${totalMoneyValuefinal}
+    `;  
+    }
+    else {
+        moneyValuefinal2 -= moneyValue;
+        payText.innerHTML = `
+        ฿${-moneyValuefinal2}
+    `;  totalMoneyValuefinal -= moneyValue;
+        totalMoneyValue.innerHTML = `
+        ฿${-totalMoneyValuefinal}
+    `;  
+    }
+    
+    list.remove();
 }
