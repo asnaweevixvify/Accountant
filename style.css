@@ -67,7 +67,7 @@ body{
     width: 5px;
     height: 50px;
     background-color: gray;
-    margin-top: 60px;
+    margin-top: 40px;
     opacity: 0.2;
 }
 .line-2{
@@ -146,4 +146,152 @@ body{
     width: 6px;
     background-color:red;
     margin-right: -10px;
+}
+@media(max-width:450px){
+    .h1{
+        font-family: 'kanit';
+        text-align: center;
+        font-weight: 500;
+        font-size: 20px;
+        margin-top: 30px;
+    }
+    .h1-2{
+        font-family: 'kanit';
+        text-align: left;
+        font-weight: 500;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+    .h2{
+        font-family: 'kanit';
+        text-align: left;
+        font-weight: 500;
+        margin-top: 30px;
+        font-size: 20px;
+    }
+    .h2-2{
+        font-family: 'kanit';
+        text-align: left;
+        font-weight: 500;
+        margin-top: 50px;
+        margin-left: 50px;
+        font-size: 20px;
+    }
+    .h3{
+        font-family: 'kanit';
+        text-align: left;
+        font-weight: 500;
+        margin-top: 30px;
+        margin-left: 50px;
+    }
+    .earntext{
+        font-family: 'kanit';
+        font-weight: 500;
+        color:green;
+    }
+    .paytext{
+        color:red;
+        font-family: 'kanit';
+        font-weight: 500;
+    }
+    .total{
+        margin-left: 50px;
+    }
+    .earnpaybg{
+        margin-left: 50px;
+        background-color:white;
+        width: 400px;
+        height: 120px;
+        margin-top: 20px;
+        box-shadow: 1px 1px 1px gray;
+    }
+    .earnpaytext{
+        display: flex;
+       text-align: center;
+       justify-content: space-around;
+    }
+    .line-1{
+        width: 5px;
+        height: 50px;
+        background-color: gray;
+        margin-top: 40px;
+        opacity: 0.2;
+    }
+    .line-2{
+        width: 515px;
+        height: 3px;
+        opacity: 0.2;
+        background-color: gray;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+    .bankType{
+        height: 40px;
+        width: 400px;
+        display: flex;
+        margin-left: 50px;
+        margin-top: 20px;
+        font-family: 'kanit';
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .moneyType{
+        height: 40px;
+        width: 400px;
+        display: flex;
+        margin-left: 50px;
+        margin-top: 20px;
+        font-family: 'kanit';
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .addBank-2{
+        text-align: center;
+        display: flex;
+        margin-left:50px;
+        margin-right: auto;
+        margin-top: 30px;
+        width: 405px;
+        height: 60px;
+        background-color: purple;
+    }
+    .h3-2{
+        font-family: 'kanit';
+        font-weight: 500;
+        color:white;
+        font-size: 20px;
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: auto;
+       margin-bottom: auto;
+    }
+    #historyList{
+        width: 400px;
+        height: 50px;
+        display: flex;
+        margin-left: 50px;
+        margin-right: auto;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding: 10px;
+        align-items: center;
+        background-color: white;
+    }
+    .historyListText{
+        font-family: 'kanit';
+        font-weight: 500;
+    }
+    .line-3{
+        height:70px;
+        width: 6px;
+        background-color: green;
+        margin-right: -10px;
+    }
+    .line-4{
+        height:70px;
+        width: 6px;
+        background-color:red;
+        margin-right: -10px;
+    }
 }
