@@ -79,27 +79,45 @@ function del(list){
     let payText = document.getElementById('paytext');
     let totalMoneyValue = document.getElementById('totalmoney');
     let moneyValue = parseFloat(list.querySelector(".historyListNumber").textContent.replace("฿", ""));
-
-
-    if(moneyValue>0){
-        moneyValuefinal1 -= moneyValue;
-        earnText.innerHTML = `
-        ฿${moneyValuefinal1}
-    `;  
-    totalMoneyValuefinal -= moneyValue;
-    totalMoneyValue.innerHTML = `
-        ฿${totalMoneyValuefinal}
-    `;  
-    }
-    else {
-        moneyValuefinal2 -= moneyValue;
-        payText.innerHTML = `
-        ฿${-moneyValuefinal2}
-    `;  totalMoneyValuefinal -= moneyValue;
+    Swal.fire({
+        title: "คุณแน่ใจที่จะลบรายการนี้ใช่ไหม?",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ใช่",
+        cancelButtonText: "ยกเลิก"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "ลบสำเร็จ",
+            text: "รายการถูกลบ",
+            icon: "success"
+          });
+          if(moneyValue>0){
+            moneyValuefinal1 -= moneyValue;
+            earnText.innerHTML = `
+            ฿${moneyValuefinal1}
+        `;  
+        totalMoneyValuefinal -= moneyValue;
         totalMoneyValue.innerHTML = `
-        ฿${totalMoneyValuefinal}
-    `;  
-    }
+            ฿${totalMoneyValuefinal}
+        `;  
+        }
+        else {
+            moneyValuefinal2 -= moneyValue;
+            payText.innerHTML = `
+            ฿${-moneyValuefinal2}
+        `;  totalMoneyValuefinal -= moneyValue;
+            totalMoneyValue.innerHTML = `
+            ฿${totalMoneyValuefinal}
+        `;  
+        }
+        
+        list.remove();
+        }
+      });
     
-    list.remove();
+    
 }
