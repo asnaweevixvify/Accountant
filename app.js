@@ -97,7 +97,7 @@ function del(list){
         ฿${-moneyValuefinal2}
     `;  totalMoneyValuefinal -= moneyValue;
         totalMoneyValue.innerHTML = `
-        ฿${-totalMoneyValuefinal}
+        ฿${totalMoneyValuefinal}
     `;  
     }
     
