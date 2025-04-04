@@ -69,9 +69,6 @@ function addToHistory(){
             draggable: true
           });
     }
-    
-    
-    
 }
 function del(list){
     
