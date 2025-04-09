@@ -109,6 +109,13 @@ body{
     height: 60px;
     background-color: purple;
 }
+#del{
+    opacity: 0;
+    transition: 0.3s ease;
+}
+#del:hover{
+    opacity: 1;
+}
 .h3-2{
     font-family: 'kanit';
     font-weight: 500;
@@ -134,25 +141,28 @@ body{
 .historyListText{
     font-family: 'kanit';
     font-weight: 500;
-    margin-left: 30px;
+    margin-right: auto;
 }
 .historyListNumber{
     font-family: 'kanit';
     font-weight: 500;
-    margin-left: 230px;
-    margin-right: 70px;
+    text-align: left;
+    margin-left: auto;
 }
 .line-3{
     height:70px;
     width: 6px;
     background-color: green;
     margin-right: -10px;
+    margin-left: 30px;
 }
 .line-4{
     height:70px;
     width: 6px;
     background-color:red;
     margin-right: -10px;
+    margin-left: 30px;
+
 }
 
 @media(max-width:450px){
@@ -273,6 +283,9 @@ body{
        margin-right: auto;
        margin-top: auto;
        margin-bottom: auto;
+    }
+    .history{
+        height: auto;
     }
     #historyList{
         width: 400px;

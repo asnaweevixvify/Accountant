@@ -15,10 +15,10 @@ function addToHistory(){
     if(moneyValue>0){
         addItems.innerHTML=`
         <li class="animate__animated animate__bounceIn" id="historyList">
+            <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
             <h3 class="historyListText">${bankName}</h3>
             <h3 class="historyListNumber" >฿${moneyValue}</h3>
-            <i class="fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
-            <p class="line-3"></p>
+            <p class="line-3" id="line-3"></p>
         </li>
     `;  
         moneyValuefinal1 += parseFloat(moneyValue) 
@@ -40,12 +40,12 @@ function addToHistory(){
     }
     else if (moneyValue<0){
         addItems.innerHTML=`
-        <li class="animate__animated animate__bounceIn" id="historyList" >
-            <h3 class="historyListText">${bankName}</h3>
-            <h3 class="historyListNumber" >฿${moneyValue}</h3>
-            <i class="fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
-            <p class="line-4"></p>
-        </li>
+        <li class="animate__animated animate__bounceIn" id="historyList">
+        <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
+        <h3 class="historyListText">${bankName}</h3>
+        <h3 class="historyListNumber" >฿${moneyValue}</h3>
+        <p class="line-4" id="line-4"></p>
+    </li>
     `;
         historyAll.appendChild(addItems);
         Swal.fire({
@@ -55,7 +55,7 @@ function addToHistory(){
     });  
         moneyValuefinal2 += parseFloat(moneyValue) 
         payText.innerHTML=`
-        ฿${-moneyValuefinal2}
+        ฿${Math.abs(moneyValuefinal2)}
     `;  
         totalMoneyValuefinal += parseFloat(moneyValue); 
         totalMoneyValue.innerHTML=`
@@ -105,7 +105,7 @@ function del(list){
         else {
             moneyValuefinal2 -= moneyValue;
             payText.innerHTML = `
-            ฿${-moneyValuefinal2}
+            ฿${Math.abs(moneyValuefinal2)}
         `;  totalMoneyValuefinal -= moneyValue;
             totalMoneyValue.innerHTML = `
             ฿${totalMoneyValuefinal}
