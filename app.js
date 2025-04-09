@@ -4,7 +4,7 @@ let  moneyValuefinal2 = 0;
 let  totalMoneyValuefinal = 0;
 function addToHistory(){
     let bankName = document.getElementById('bankname').value;
-    let moneyValue = document.getElementById('moneyvalue').value;
+    let moneyValue = parseFloat(document.getElementById('moneyvalue').value);
     let historyAll = document.getElementById('history');
     let addItems = document.createElement('li')
     let earnText = document.getElementById('earntext');
@@ -17,18 +17,18 @@ function addToHistory(){
         <li class="animate__animated animate__bounceIn" id="historyList">
             <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
             <h3 class="historyListText">${bankName}</h3>
-            <h3 class="historyListNumber" >฿${moneyValue}</h3>
+            <h3 class="historyListNumber" >฿${moneyValue.toFixed(2)}</h3>
             <p class="line-3" id="line-3"></p>
         </li>
     `;  
         moneyValuefinal1 += parseFloat(moneyValue) 
         earnText.innerHTML=`
-        ฿${moneyValuefinal1}
+        ฿${moneyValuefinal1.toFixed(2)}
 
     `;  
         totalMoneyValuefinal += parseFloat(moneyValue) 
         totalMoneyValue.innerHTML=`
-        ฿${totalMoneyValuefinal}
+        ฿${totalMoneyValuefinal.toFixed(2)}
     `;  
         
         historyAll.appendChild(addItems);
@@ -43,7 +43,7 @@ function addToHistory(){
         <li class="animate__animated animate__bounceIn" id="historyList">
         <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;"onclick="del(this.parentElement)"></i>
         <h3 class="historyListText">${bankName}</h3>
-        <h3 class="historyListNumber" >฿${moneyValue}</h3>
+        <h3 class="historyListNumber" >฿${moneyValue.toFixed(2)}</h3>
         <p class="line-4" id="line-4"></p>
     </li>
     `;
@@ -55,11 +55,11 @@ function addToHistory(){
     });  
         moneyValuefinal2 += parseFloat(moneyValue) 
         payText.innerHTML=`
-        ฿${Math.abs(moneyValuefinal2)}
+        ฿${Math.abs(moneyValuefinal2).toFixed(2)}
     `;  
         totalMoneyValuefinal += parseFloat(moneyValue); 
         totalMoneyValue.innerHTML=`
-        ฿${totalMoneyValuefinal}
+        ฿${totalMoneyValuefinal.toFixed(2)}
     `;  
     }
     else if(!bankName || !moneyValue){
@@ -95,20 +95,20 @@ function del(list){
           if(moneyValue>0){
             moneyValuefinal1 -= moneyValue;
             earnText.innerHTML = `
-            ฿${moneyValuefinal1}
+            ฿${moneyValuefinal1.toFixed(2)}
         `;  
         totalMoneyValuefinal -= moneyValue;
         totalMoneyValue.innerHTML = `
-            ฿${totalMoneyValuefinal}
+            ฿${totalMoneyValuefinal.toFixed(2)}
         `;  
         }
         else {
             moneyValuefinal2 -= moneyValue;
             payText.innerHTML = `
-            ฿${Math.abs(moneyValuefinal2)}
+            ฿${Math.abs(moneyValuefinal2).toFixed(2)}
         `;  totalMoneyValuefinal -= moneyValue;
             totalMoneyValue.innerHTML = `
-            ฿${totalMoneyValuefinal}
+            ฿${totalMoneyValuefinal.toFixed(2)}
         `;  
         }
         
