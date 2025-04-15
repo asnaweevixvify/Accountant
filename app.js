@@ -12,6 +12,9 @@ window.onload=function(){
         let totalmoneyValue = document.getElementById('totalmoney');
         let earntext = document.getElementById('earntext');
         let paytext = document.getElementById('paytext');
+        totalMoneyValuefinal = parseFloat(li.totalMoneyValue.replace('฿', '').replace(/,/g, '').trim());
+        moneyValuefinalMinus = parseFloat(li.payText.replace('฿', '').replace(/,/g, '').trim());
+        moneyValuefinalPlus  = parseFloat(li.earnText.replace('฿', '').replace(/,/g, '').trim());
         let addItems = document.createElement('div');
         if (moneyValue > 0) {
             addItems.innerHTML = `
@@ -22,9 +25,7 @@ window.onload=function(){
                     <p class="line-3" id="line-3"></p>
                 </div>
             `;
-            moneyValuefinalPlus += moneyValue;
-            totalMoneyValuefinal += moneyValue;
-       
+            
         historyAll.appendChild(addItems);
         }
         else if (moneyValue < 0) {
@@ -36,8 +37,7 @@ window.onload=function(){
                     <p class="line-4" id="line-3"></p>
                 </div>
             `;
-            moneyValuefinalMinus += Math.abs(moneyValue);
-            totalMoneyValuefinal -= Math.abs(moneyValue);
+           
       
             historyAll.appendChild(addItems);
         }
