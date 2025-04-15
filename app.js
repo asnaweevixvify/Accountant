@@ -2,6 +2,55 @@ let moneyValuefinalPlus = 0;
 let moneyValuefinalMinus = 0;
 let totalMoneyValuefinal = 0;
 
+window.onload=function(){
+    let historyAll = document.getElementById('history');
+    let listAll  = localStorage.getItem('listall')
+    let listAllStr = listAll ? JSON.parse(listAll) : [];
+    listAllStr.forEach(li=>{
+        let bankName = li.historyListTextSave
+        let moneyValue = parseFloat(li.historyListNumberSave.replace('฿', '').replace(/,/g, '').trim());
+        let totalmoneyValue = document.getElementById('totalmoney');
+        let earntext = document.getElementById('earntext');
+        let paytext = document.getElementById('paytext');
+        let addItems = document.createElement('div');
+        if (moneyValue > 0) {
+            addItems.innerHTML = `
+                <div class="animate__animated animate__bounceIn" id="historyList">
+                    <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;" onclick="del(this.parentElement)"></i>
+                    <h3 class="historyListText">${bankName}</h3>
+                    <h3 class="historyListNumber">฿${formatNumber(moneyValue.toFixed(2))}</h3>
+                    <p class="line-3" id="line-3"></p>
+                </div>
+            `;
+            moneyValuefinalPlus += moneyValue;
+            totalMoneyValuefinal += moneyValue;
+       
+        historyAll.appendChild(addItems);
+        }
+        else if (moneyValue < 0) {
+            addItems.innerHTML = `
+                <div class="animate__animated animate__bounceIn" id="historyList">
+                    <i class="fa-solid fa-circle-xmark fa-lg" id="del" style="color: #ff0000;" onclick="del(this.parentElement)"></i>
+                    <h3 class="historyListText">${bankName}</h3>
+                    <h3 class="historyListNumber">฿${formatNumber(moneyValue.toFixed(2))}</h3>
+                    <p class="line-4" id="line-3"></p>
+                </div>
+            `;
+            moneyValuefinalMinus += Math.abs(moneyValue);
+            totalMoneyValuefinal -= Math.abs(moneyValue);
+      
+            historyAll.appendChild(addItems);
+        }
+        earntext.innerHTML = `฿${formatNumber(moneyValuefinalPlus.toFixed(2))}`;
+        paytext.innerHTML = `฿${formatNumber(moneyValuefinalMinus.toFixed(2))}`;
+        totalmoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
+
+    })
+}
+function formatNumber(num) {
+    return num.toString().replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
+}
+
 function addToHistory() {
     let bankName = document.getElementById('bankname').value;
     let moneyValue = parseFloat(document.getElementById('moneyvalue').value);
@@ -11,7 +60,7 @@ function addToHistory() {
     let payText = document.getElementById('paytext');
     let totalMoneyValue = document.getElementById('totalmoney');
 
-    function formatNumber(num) {
+function formatNumber(num) {
         return num.toString().replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
     }
 
@@ -72,6 +121,7 @@ function addToHistory() {
         totalMoneyValuefinal -= moneyValueNoSymbol;
         totalMoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
     }
+    saveMode()
 }
 
 function del(list) {
@@ -86,9 +136,7 @@ function del(list) {
             .trim()
     );
 
-    function formatNumber(num) {
-        return num.toString().replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
-    }
+    
 
     Swal.fire({
         title: "คุณแน่ใจที่จะลบรายการนี้ใช่ไหม?",
@@ -121,8 +169,32 @@ function del(list) {
                 totalMoneyValuefinal += moneyValueNoSymbol;
                 totalMoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
             }
-
             list.remove();
         }
     });
+    saveMode()
+}
+function saveMode(){
+    let historylist = document.querySelectorAll('#historyList')
+    let totalMoneyValue = document.getElementById('totalmoney').textContent.replace('฿', '').replace(/,/g, '').trim();
+    let earnText = document.getElementById('earntext').textContent.replace('฿', '').replace(/,/g, '').trim();
+    let payText = document.getElementById('paytext').textContent.replace('฿', '').replace(/,/g, '').trim();
+
+    let listallArr = []
+    historylist.forEach(li =>{  
+        let historyListTextSave = li.querySelector('.historyListText').textContent;
+        let historyListNumberSave = li.querySelector('.historyListNumber').textContent.replace('฿', '').replace(/,/g, '').trim();
+        let amount = parseFloat(historyListNumberSave.replace('฿', '').replace(/,/g, '').trim());
+        if(historyListTextSave !== ""){
+            if(amount>0){
+                listallArr.push({historyListNumberSave,historyListTextSave,
+                    totalMoneyValue,earnText,payText})
+            }
+            else if(amount<0){
+                listallArr.push({historyListNumberSave,historyListTextSave,
+                    totalMoneyValue,earnText,payText})
+            }
+        }
+    })
+    localStorage.setItem('listall',JSON.stringify(listallArr))
 }

@@ -170,8 +170,10 @@ body{
         font-family: 'kanit';
         text-align: center;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 25px;
         margin-top: 30px;
+        display: flex;
+        justify-content: center;
     }
     .h1-2{
         font-family: 'kanit';
