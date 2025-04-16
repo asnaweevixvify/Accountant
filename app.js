@@ -132,7 +132,7 @@ function del(list) {
     let moneyValue = parseFloat(
         list.querySelector(".historyListNumber").textContent
             .replace('฿', '')
-            .replace(',', '')
+            .replace(/,/g, '')
             .trim()
     );
 
