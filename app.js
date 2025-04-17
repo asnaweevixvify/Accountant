@@ -53,7 +53,7 @@ function formatNumber(num) {
 
 function addToHistory() {
     let bankName = document.getElementById('bankname').value;
-    let moneyValue = parseFloat(document.getElementById('moneyvalue').value);
+    let moneyValue = parseFloat(document.getElementById('moneyvalue').value.replace('฿', '').replace(/,/g, '').trim())
     let historyAll = document.getElementById('history');
     let addItems = document.createElement('div');
     let earnText = document.getElementById('earntext');
