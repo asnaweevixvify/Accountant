@@ -44,12 +44,19 @@ window.onload=function(){
         earntext.innerHTML = `฿${formatNumber(moneyValuefinalPlus.toFixed(2))}`;
         paytext.innerHTML = `฿${formatNumber(moneyValuefinalMinus.toFixed(2))}`;
         totalmoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
+        chartLoad();
 
     })
 }
+
+
+
 function formatNumber(num) {
     return num.toString().replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
 }
+
+
+
 
 function addToHistory() {
     let bankName = document.getElementById('bankname').value;
@@ -60,7 +67,7 @@ function addToHistory() {
     let payText = document.getElementById('paytext');
     let totalMoneyValue = document.getElementById('totalmoney');
 
-function formatNumber(num) {
+    function formatNumber(num) {
         return num.toString().replace(/\d(?=(\d{3})+(?!\d))/g, '$&,');
     }
 
@@ -121,8 +128,11 @@ function formatNumber(num) {
         totalMoneyValuefinal -= moneyValueNoSymbol;
         totalMoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
     }
-    saveMode()
+    saveMode();
+    chartLoad();
 }
+
+
 
 function del(list) {
     let earnText = document.getElementById('earntext');
@@ -135,9 +145,6 @@ function del(list) {
             .replace(/,/g, '')
             .trim()
     );
-
-    
-
     Swal.fire({
         title: "คุณแน่ใจที่จะลบรายการนี้ใช่ไหม?",
         text: "",
@@ -170,10 +177,15 @@ function del(list) {
                 totalMoneyValue.innerHTML = `฿${formatNumber(totalMoneyValuefinal.toFixed(2))}`;
             }
             list.remove();
+            chartLoad();
+            saveMode()
         }
     });
-    saveMode()
+    
 }
+
+
+
 function saveMode(){
     let historylist = document.querySelectorAll('#historyList')
     let totalMoneyValue = document.getElementById('totalmoney').textContent.replace('฿', '').replace(/,/g, '').trim();
@@ -198,3 +210,33 @@ function saveMode(){
     })
     localStorage.setItem('listall',JSON.stringify(listallArr))
 }
+
+
+let myChart;
+function chartLoad(){
+    if (myChart) {
+        myChart.destroy();
+      }
+      
+    const ctx = document.getElementById('myChart');
+    myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['รายรับ', 'รายจ่าย'],
+        datasets: [{
+          label: 'จำนวนเงิน',
+          data: [moneyValuefinalPlus, moneyValuefinalMinus],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+}
+chartLoad();
