@@ -110,8 +110,9 @@ body{
     background-color: purple;
 }
 #del{
-    opacity: 0;
+    opacity: 0.5;
     transition: 0.3s ease;
+    margin-right: 20px;
 }
 #del:hover{
     opacity: 1;
